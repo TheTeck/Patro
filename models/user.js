@@ -4,12 +4,33 @@ const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 6;
 
 const userSchema = new mongoose.Schema({
-  username: {type: String, required: true, lowercase: true, unique: true},
-  email: {type: String, required: true, lowercase: true, unique: true},
+  username: {
+    type: String, 
+    required: true, 
+    unique: true
+  },
+  fullName: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String, 
+    required: true, 
+    lowercase: true, 
+    unique: true
+  },
+  // All tasks associated with this user
+  tasks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Task'
+  }],
+  // All users connected with this user
+  connections: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   password: String,
   photoUrl: String  // string from aws!
-}, {
-  timestamps: true
 });
 
 userSchema.set('toJSON', {
