@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     required: true, 
     unique: true
   },
-  fullName: {
+  fullname: {
     type: String,
     required: true
   },
@@ -22,12 +22,14 @@ const userSchema = new mongoose.Schema({
   // All tasks associated with this user
   tasks: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Task'
+    ref: 'Task',
+    default: []
   }],
   // All users connected with this user
   connections: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    default: []
   }],
   password: String,
   photoUrl: String  // string from aws!

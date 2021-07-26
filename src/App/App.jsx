@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import SignupPage from '../SignupPage/SignupPage';
-import LoginPage from '../LoginPage/LoginPage';
-import userService from '../../utils/userService'
+
+import SignupPage from '../pages/SignupPage/SignupPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import HomePage from '../pages/HomePage/HomePage';
+import userService from '../utils/userService'
 
 
 function App() {
@@ -16,7 +18,7 @@ function App() {
     setUser(userService.getUser()) // getting the user from localstorage decoding the jwt
   }
 
-  function handleLogout(){
+  function logoutHandler(){
     userService.logout();
     setUser({user: null})
   }
@@ -34,7 +36,7 @@ function App() {
             <> 
              <Switch>
                 <Route exact path="/">
-                    Home PAGE COMPONENT WOULD GO HEREE
+                    <HomePage user={user} logoutHandler={logoutHandler} />
                 </Route>
             </Switch>
             </>
