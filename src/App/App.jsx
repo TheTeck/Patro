@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 
 import SignupPage from '../pages/SignupPage/SignupPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
