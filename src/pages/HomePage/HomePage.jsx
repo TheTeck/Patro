@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import Header from '../../components/Header/Header';
 export default function HomePage (props) {
 
     const history = useHistory();
@@ -12,7 +13,7 @@ export default function HomePage (props) {
 
     return (
         <>
-            <div>Homepage mofo</div>
+            <Header />
             <button onClick={handleLogoutClick}>Log Out</button>
         </>
     )
