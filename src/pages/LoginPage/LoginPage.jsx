@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './LoginPage.scss';
+
+import MainHeader from '../../components/Header/Header';
+
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 import userService from '../../utils/userService';
 import { useHistory } from 'react-router-dom';
@@ -49,7 +52,7 @@ export default function LoginPage(props){
 
     return (
         <>
-          
+          <MainHeader user={null} />
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
