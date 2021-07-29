@@ -4,6 +4,10 @@
 .material-icons.md-48 {
   font-size: 48px;
   color: $primary-font-color;
+
+  &:hover {
+    color: $primary-font-color-hover;
+  }
 }
 
 .header-container {
@@ -21,6 +25,10 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  &:hover {
+    color: $primary-font-color-hover;
+  }
 
   .person-action-text {
     display: none;
@@ -72,6 +80,10 @@
       display: inline;
       color: $primary-font-color;
       font-size: $medium-size;
+
+      &:hover {
+        color: $primary-font-color-hover;
+      }
     }
   }
 }
