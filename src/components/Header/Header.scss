@@ -20,6 +20,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   .person-action-text {
     display: none;
@@ -28,6 +29,7 @@
 
 .hamburger {
   display: inline;
+  cursor: pointer;
 }
 
 .app-title {
@@ -35,6 +37,7 @@
   font-size: $title-size;
   font-weight: 900;
   text-shadow: 5px 3px 10px black;
+  pointer-events: none;
 }
 
 .menu-options-container {

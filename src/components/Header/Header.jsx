@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './Header.scss';
 
 const menuOptions = [
@@ -7,6 +8,13 @@ const menuOptions = [
 ]
 
 export default function Header (props) {
+
+    const history = useHistory();
+
+    function handleLogoutClick () {
+        props.logoutHandler();
+        history.push('/');
+    }
 
     return (
         <div className="header-container">
@@ -28,9 +36,13 @@ export default function Header (props) {
                 }
             </div>
 
-            <div className="person-icon-text-container">
+            <div onClick={handleLogoutClick} className="person-icon-text-container">
                 <div className="material-icons md-48">person</div>
-                <div className="person-action-text">Log Out</div>
+                <div className="person-action-text">
+                    {
+                        props.user ? "Log Out" : "Log In / Sign Up" 
+                    }
+                </div>
             </div>
         </div>
     )
