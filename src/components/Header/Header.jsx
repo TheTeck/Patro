@@ -2,11 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './Header.scss';
 
-const menuOptions = [
-    "Completed Tasks",
-    "Connections"
-]
-
 export default function Header (props) {
 
     const history = useHistory();
@@ -24,23 +19,26 @@ export default function Header (props) {
 
             <div className="app-title">Patro</div>
 
-            <div className="menu-options-container">
-                {
-                    menuOptions.map((option, index) => {
-                        return (
-                            <div key={index} className="menu-option">
-                                {option}
-                            </div>
-                        )
-                    })
-                }
-            </div>
+            {
+                props.menuOptions ? 
+                    <div className="menu-options-container">
+                        {
+                            props.menuOptions.map((option, index) => {
+                                return (
+                                    <div key={index} className="menu-option">
+                                        {option}
+                                    </div>
+                                )
+                            })
+                        }
+                    </div> : <div className="menu-options-container"></div>
+            }
 
             <div onClick={handleLogoutClick} className="person-icon-text-container">
                 <div className="material-icons md-48">person</div>
                 <div className="person-action-text">
                     {
-                        props.user ? "Log Out" : "Log In / Sign Up" 
+                        props.menuOptions ? "Log Out" : "Log In / Sign Up" 
                     }
                 </div>
             </div>
