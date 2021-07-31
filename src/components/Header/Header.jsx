@@ -20,6 +20,11 @@ export default function Header (props) {
         setDropdownActive(prevState => !prevState);
     }
 
+    function handleOptionClick (e) {
+        handleHamburgerClick();
+        history.push(`/${e.target.innerHTML.toLowerCase().replace(' ', '')}`);
+    }
+
     let dropdown = `menu-dropdown-options-container ${dropdownActive ? "dropdown-active" : "dropdown-inactive"}`;
 
     return (
@@ -39,7 +44,7 @@ export default function Header (props) {
                         {
                             props.menuOptions.map((option, index) => {
                                 return (
-                                    <div key={index} className="menu-option">
+                                    <div onClick={handleOptionClick} key={index} className="menu-option">
                                         {option}
                                     </div>
                                 )
@@ -53,7 +58,7 @@ export default function Header (props) {
                         {
                             props.menuOptions.map((option, index) => {
                                 return (
-                                    <div key={index} className="dropdown-menu-option">
+                                    <div onClick={handleOptionClick} key={index} className="dropdown-menu-option">
                                         {option}
                                     </div>
                                 )
