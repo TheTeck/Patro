@@ -9,11 +9,13 @@
 .header-container {
   width: 100%;
   height: 100px;
+  z-index: 3;
   padding: 30px;
   background-color: $primary-color;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
 }
 
 .person-icon-text-container {
@@ -42,6 +44,37 @@
 
 .menu-options-container {
   display: none;
+}
+
+.menu-dropdown-options-container {
+  position: absolute;
+  left: 0;
+  width: 300px;
+  z-index: -1;
+  bottom: 0;
+  transition: all 250ms linear;
+}
+
+.dropdown-active {
+  bottom: -120%;
+}
+
+.dropdown-inactive {
+  bottom: 0;
+}
+
+.dropdown-menu-option {
+  color: $primary-color;
+  border-bottom: 1px solid $primary-color;
+  padding: 10px;
+  font-size: $medium-size;
+  text-align: start;
+  cursor: pointer;
+  transition: all 250ms linear;
+
+  &:hover {
+    padding-left: 30px;
+  }
 }
 
 @media screen and (min-width: 1000px) {
