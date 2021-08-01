@@ -12,8 +12,8 @@ export default function Header (props) {
         history.push('/');
     }
 
-    function handleSignupClick () {
-        history.push('/signup')
+    function handleLoginClick () {
+        history.push('/login')
     }
 
     function handleHamburgerClick () {
@@ -68,11 +68,11 @@ export default function Header (props) {
                     </div> : ''
             }
 
-            <div onClick={props.menuOptions ? handleLogoutClick : handleSignupClick} className="person-icon-text-container">
+            <div onClick={props.menuOptions ? handleLogoutClick : handleLoginClick} className="person-icon-text-container">
                 <div className="material-icons md-48">person</div>
                 <div className="person-action-text">
                     {
-                        props.menuOptions ? "Log Out" : "Log In / Sign Up" 
+                        props.menuOptions ? "Log Out" : "Log In" 
                     }
                 </div>
             </div>

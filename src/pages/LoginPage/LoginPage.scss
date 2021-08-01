@@ -3,6 +3,7 @@
 
 .login-page-container {
   background: linear-gradient(#fff, $primary-color);
+  position: relative;
 }
 
 .login-header {
@@ -12,4 +13,19 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+}
+
+.signup-link-sentence {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $primary-font-color;
+  font-size: $small-size;
+  font-weight: 600;
+}
+
+.signup-link {
+  color: $primary-color;
+  cursor: pointer;
 }

@@ -15,7 +15,7 @@ export default function LoginPage(props){
     const [state, setState]       = useState({
         email: '',
         password: '',
-    })
+    });
 
     const history = useHistory();
     
@@ -23,32 +23,35 @@ export default function LoginPage(props){
       setState({
         ...state,
         [e.target.name]: e.target.value
-      })
-    }
+      });
+    };
    
+    function handleSignupLinkClick () {
+      history.push('/signup');
+    };
     
 
     async function handleSubmit(e){
-      e.preventDefault()
+      e.preventDefault();
               
       try {
           await userService.login(state);
           // Route to wherever you want!
-          props.handleSignUpOrLogin()
+          props.handleSignUpOrLogin();
           history.push('/')
           
         } catch (err) {
           // Invalid user data (probably duplicate email)
-          setError(err.message)
+          setError(err.message);
         }
-    }
+    };
 
     useEffect(() => {
       if (state.username !== '' && state.password !== '' && invalidForm)
         setInvalidForm(false)
       else if ((state.username === '' || state.password === '') && !invalidForm)
         setInvalidForm(true)
-    })
+    });
 
     return (
         <div className="login-page-container">
@@ -90,6 +93,7 @@ export default function LoginPage(props){
               {error ? <ErrorMessage error={error} /> : null}
             </Grid.Column>
           </Grid>
+          <div className="signup-link-sentence">Not already a member? <span onClick={handleSignupLinkClick} className="signup-link">Sign up here</span></div>
         </div>
       );
 }
