@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
+import Header from '../../components/Header/Header';
+import { Button, Form, Grid, Segment } from 'semantic-ui-react'
+
 import userService from '../../utils/userService';
 import { useHistory } from 'react-router-dom';
 import './SignupPage.scss';
@@ -72,71 +74,75 @@ export default function SignUpPage(props){
    
       
       return (
-        <div className="full-screen-container">
+        <div className="signup-page-container">
+          <Header menuOptions={null} />
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-            <Grid.Column style={{ maxWidth: 450 }}>
-                <Header as='h2' style={{ color: 'white' }} textAlign='center'>
-                  Welcome!    
-                </Header>            
-                  <Form autoComplete="off"  onSubmit={handleSubmit}>
-                  <Segment style={{ backgroundColor: 'rgba(200,200,200,.6)'}} stacked>               
-                      <Form.Input                    
-                        name="username"
-                        placeholder="Enter Your Username"
-                        value={state.username}
-                        onChange={handleChange}
-                        required
-                      />
-                      <Form.Input                    
-                        name="fullname"
-                        placeholder="Enter Your Full Name"
-                        value={state.firstname}
-                        onChange={handleChange}
-                        required
-                      />
+            <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
+              <div className="signup-header">Sign Up with Patro</div>          
+                <Form autoComplete="off"  onSubmit={handleSubmit}>
+                  <Segment style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }} stacked>               
+                    <Form.Input
+                      label="Username"                    
+                      name="username"
+                      placeholder="Enter Your Username"
+                      value={state.username}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Form.Input
+                      label="Full Name"                    
+                      name="fullname"
+                      placeholder="Enter Your Full Name"
+                      value={state.firstname}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Form.Input
+                      label="Email"
+                      type="email"                  
+                      name="email"
+                      placeholder="Enter Your Email"
+                      value={ state.email}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Form.Input
+                      label="Password"             
+                      name="password"
+                      type="password"
+                      placeholder="Enter Password"
+                      value={ state.password}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Form.Input     
+                      name="passwordConf"
+                      type="password"
+                      placeholder="Re-Enter Password"
+                      value={ state.passwordConf}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Form.Field> 
                       <Form.Input
-                        type="email"                  
-                        name="email"
-                        placeholder="Enter Your Email"
-                        value={ state.email}
-                        onChange={handleChange}
-                        required
-                      />
-                      <Form.Input             
-                        name="password"
-                        type="password"
-                        placeholder="Enter Password"
-                        value={ state.password}
-                        onChange={handleChange}
-                        required
-                      />
-                      <Form.Input     
-                        name="passwordConf"
-                        type="password"
-                        placeholder="Re-Enter Password"
-                        value={ state.passwordConf}
-                        onChange={handleChange}
-                        required
-                      />
-                      <Form.Field> 
-                          <Form.Input
-                            type="file"
-                            name="photo"
-                            placeholder="upload image"
-                            onChange={handleFileInput}
-                            />      
-                      </Form.Field>
-                      <Button
-                        color="youtube"
-                        type="submit"
-                        className="btn"
-                      >
-                      Signup
+                        label="Avatar Image"
+                        type="file"
+                        name="photo"
+                        placeholder="upload image"
+                        onChange={handleFileInput}
+                        />      
+                    </Form.Field>
+                    <Button
+                      color="youtube"
+                      type="submit"
+                      className="btn"
+                      fluid size="large"
+                    >
+                      Sign Up
                     </Button>
-                    </Segment>
-                    {error ? <ErrorMessage error={error} /> : null}
-                  </Form>
-                 
+                  </Segment>
+                  {error ? <ErrorMessage error={error} /> : null}
+                </Form>
               </Grid.Column>
             </Grid>
           </div>
