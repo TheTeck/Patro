@@ -1,0 +1,15 @@
+@import "../../scss/colors";
+@import "../../scss/fonts";
+
+.signup-page-container {
+  background: linear-gradient(#fff, $primary-color);
+}
+
+.signup-header {
+  font-size: $medium-size;
+  color: $primary-color;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
