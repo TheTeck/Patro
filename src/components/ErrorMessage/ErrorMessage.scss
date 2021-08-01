@@ -1,14 +1,9 @@
 @import "../../scss/colors";
 @import "../../scss/fonts";
 
-.login-page-container {
-  background: linear-gradient(#fff, $primary-color);
-}
-
-.login-header {
+.error {
+  color: $alert-color;
   font-size: $medium-size;
-  color: $primary-color;
-  font-weight: 800;
   display: flex;
   justify-content: center;
   padding: 20px;

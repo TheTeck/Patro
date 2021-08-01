@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './LoginPage.scss';
 
-import MainHeader from '../../components/Header/Header';
+import Header from '../../components/Header/Header';
 
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 import userService from '../../utils/userService';
 import { useHistory } from 'react-router-dom';
-import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment } from 'semantic-ui-react'
 
 export default function LoginPage(props){
     
@@ -47,20 +47,19 @@ export default function LoginPage(props){
       if (state.username !== '' && state.password !== '' && invalidForm)
         setInvalidForm(false)
       else if ((state.username === '' || state.password === '') && !invalidForm)
-      setInvalidForm(true)
+        setInvalidForm(true)
     })
 
     return (
-        <>
-          <MainHeader menuOptions={null} />
+        <div className="login-page-container">
+          <Header menuOptions={null} />
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-            <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='teal' textAlign='center'>
-            Log-in to Patro
-            </Header>
-            <Form  autoComplete="off"  onSubmit={handleSubmit}>
-               <Segment stacked>
+            <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
+              <div className="login-header">Login to Patro</div>
+              <Form  autoComplete="off"  onSubmit={handleSubmit}>
+                <Segment stacked>
                   <Form.Input
+                    label="Email"
                     name="email"
                     placeholder="Enter Email"
                     value={ state.username}
@@ -68,6 +67,7 @@ export default function LoginPage(props){
                     required
                   />
                   <Form.Input
+                    label="Password"
                     name="password"
                     type="password"
                     placeholder="Enter Password"
@@ -75,22 +75,22 @@ export default function LoginPage(props){
                     onChange={handleChange}
                     required
                   />
-                <Button
-                  color='youtube'
-                  fluid size='large'
-                  type="submit"
-                  className="btn"
-                  disabled={invalidForm}
-                >
-                  Login
-                </Button>
-              </Segment>
-            </Form>
+                  <Button
+                    color='youtube'
+                    fluid size='large'
+                    type="submit"
+                    className="btn"
+                    disabled={invalidForm}
+                  >
+                    Login
+                  </Button>
+                </Segment>
+              </Form>
 
-            {error ? <ErrorMessage error={error} /> : null}
+              {error ? <ErrorMessage error={error} /> : null}
             </Grid.Column>
           </Grid>
-        </>
+        </div>
       );
 }
 
