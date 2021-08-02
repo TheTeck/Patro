@@ -12,4 +12,13 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+  white-space: pre-wrap;
+
+  .signup-title {
+    font-family: $title-font-family;
+  }
+
+  .small-text {
+    font-size: $small-size;
+  }
 }

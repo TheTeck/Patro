@@ -69,7 +69,7 @@ export default function SignUpPage(props){
         <Header menuOptions={null} />
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
-            <div className="signup-header">Sign Up with Patro</div>          
+            <div className="signup-header">Sign Up <span className="small-text">with  </span> <span className="signup-title">Patro</span></div>          
               <Form autoComplete="off"  onSubmit={handleSubmit}>
                 <Segment style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }} stacked>               
                   <Form.Input
@@ -124,9 +124,8 @@ export default function SignUpPage(props){
                       />      
                   </Form.Field>
                   <Button
-                    color="youtube"
+                    style={{ backgroundColor: 'rgb(251, 133, 0' }}
                     type="submit"
-                    className="btn"
                     fluid size="large"
                     disabled={invalidForm}
                   >

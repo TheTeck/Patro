@@ -13,6 +13,15 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+  white-space: pre-wrap;
+
+  .login-header-title {
+    font-family: $title-font-family;
+  }
+
+  .small-text {
+    font-size: $small-size;
+  }
 }
 
 .signup-link-sentence {
@@ -26,6 +35,6 @@
 }
 
 .signup-link {
-  color: $primary-color;
+  color: $secondary-font-color;
   cursor: pointer;
 }

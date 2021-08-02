@@ -58,7 +58,7 @@ export default function LoginPage(props){
           <Header menuOptions={null} />
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
-              <div className="login-header">Login to Patro</div>
+              <div className="login-header">Login <span className="small-text"> to   </span> <span className="login-header-title">Patro</span></div>
               <Form  autoComplete="off"  onSubmit={handleSubmit}>
                 <Segment stacked>
                   <Form.Input
@@ -79,10 +79,9 @@ export default function LoginPage(props){
                     required
                   />
                   <Button
-                    color='youtube'
+                    style={{ backgroundColor: 'rgb(251, 133, 0' }}
                     fluid size='large'
                     type="submit"
-                    className="btn"
                     disabled={invalidForm}
                   >
                     Login
