@@ -57,7 +57,7 @@ export default function LoginPage(props){
         <div className="login-page-container">
           <Header menuOptions={null} />
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-            <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
+            <Grid.Column textAlign="left" style={{ maxWidth: 500 }}>
               <div className="login-header">Login <span className="small-text"> to   </span> <span className="login-header-title">Patro</span></div>
               <Form  autoComplete="off"  onSubmit={handleSubmit}>
                 <Segment stacked>
@@ -89,10 +89,10 @@ export default function LoginPage(props){
                 </Segment>
               </Form>
 
-              {error ? <ErrorMessage error={error} /> : null}
+              {error ? <ErrorMessage error={error} /> : ' '}
+              <div className="signup-link-sentence">Not already a member? <span onClick={handleSignupLinkClick} className="signup-link">Sign Up</span></div>
             </Grid.Column>
           </Grid>
-          <div className="signup-link-sentence">Not already a member? <span onClick={handleSignupLinkClick} className="signup-link">Sign up here</span></div>
         </div>
       );
 }
