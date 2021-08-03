@@ -1,0 +1,16 @@
+@import "../../scss/colors";
+@import "../../scss//fonts";
+
+.custom-button-container {
+  float: left;
+  margin: 20px 0 0 30px;
+  padding: 8px 12px;
+  font-size: $button-size;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  background-color: $secondary-font-color;
+  color: $primary-color;
+  font-weight: 600;
+}
