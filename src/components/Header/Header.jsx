@@ -29,29 +29,40 @@ export default function Header (props) {
 
     return (
         <div className="header-container">
-            {
-                props.menuOptions ?
-                <div onClick={handleHamburgerClick} className="hamburger">
-                    <div className="material-icons md-48">menu</div>
-                </div> : ''
-            }
+            <div className="header-main-content-container">
+                {
+                    props.menuOptions ?
+                    <div onClick={handleHamburgerClick} className="hamburger">
+                        <div className="material-icons md-48">menu</div>
+                    </div> : ''
+                }
 
-            <div className="app-title">Patro</div>
+                <div className="app-title">Patro</div>
 
-            {
-                props.menuOptions ? 
-                    <div className="menu-options-container">
+                {
+                    props.menuOptions ? 
+                        <div className="menu-options-container">
+                            {
+                                props.menuOptions.map((option, index) => {
+                                    return (
+                                        <div onClick={handleOptionClick} key={index} className="menu-option">
+                                            {option}
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div> : <div className="menu-options-container"></div>
+                }
+
+                <div onClick={props.menuOptions ? handleLogoutClick : handleLoginClick} className="person-icon-text-container">
+                    <div className="material-icons md-48">person</div>
+                    <div className="person-action-text">
                         {
-                            props.menuOptions.map((option, index) => {
-                                return (
-                                    <div onClick={handleOptionClick} key={index} className="menu-option">
-                                        {option}
-                                    </div>
-                                )
-                            })
+                            props.menuOptions ? "Log Out" : "Log In" 
                         }
-                    </div> : <div className="menu-options-container"></div>
-            }
+                    </div>
+                </div>
+            </div>
             {
                 props.menuOptions ?
                     <div className={dropdown}>
@@ -67,15 +78,6 @@ export default function Header (props) {
                         <div onClick={handleHamburgerClick} className="dropdown-menu-option">Close</div>
                     </div> : ''
             }
-
-            <div onClick={props.menuOptions ? handleLogoutClick : handleLoginClick} className="person-icon-text-container">
-                <div className="material-icons md-48">person</div>
-                <div className="person-action-text">
-                    {
-                        props.menuOptions ? "Log Out" : "Log In" 
-                    }
-                </div>
-            </div>
         </div>
     )
 };
