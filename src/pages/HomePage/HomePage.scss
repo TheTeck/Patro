@@ -1,0 +1,20 @@
+@import "../../scss/colors";
+@import "../../scss/fonts";
+
+.homepage-container {
+  background: linear-gradient(#fff, $primary-color);
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.homepage-central-container {
+  width: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .homepage-central-container {
+    width: 65%;
+  }
+}
