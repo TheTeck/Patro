@@ -26,7 +26,7 @@ export default function ModalBase(props) {
       size='small'
     >
       <Header>
-        Modal Base
+        {props.title}
       </Header>
       <Modal.Content>
         {props.children}

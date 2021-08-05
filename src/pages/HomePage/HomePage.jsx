@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Header from '../../components/Header/Header';
 import CustomButton from '../../components/CustomButton/CustomButton';
-import ModalBase from '../../components/ModalBase/ModalBase';
+import NewTaskModal from '../../components/NewTaskModal/NewTaskModal';
 
 import './HomePage.scss';
 
@@ -28,7 +28,7 @@ export default function HomePage (props) {
                     <CustomButton title="New Task" icon="add" action={openModal} />
                     <CustomButton title="Filter" icon="sort" />
                 </div>
-                <ModalBase open={openNewTaskModal} closeModals={closeModals}>Inner content</ModalBase>
+                <NewTaskModal open={openNewTaskModal} closeModals={closeModals} />
             </div>
         </div>
     )
