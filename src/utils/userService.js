@@ -46,9 +46,11 @@ function login(creds) {
 }
 
 
-export default {
+const exportedFunctions = {
   signup, 
   logout,
   login,
   getUser
 };
+
+export default exportedFunctions;

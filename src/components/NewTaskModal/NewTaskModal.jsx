@@ -90,7 +90,6 @@ export default function NewTaskModal (props) {
                                 placeholder='Myself'
                                 label='Task For'
                                 options={options}
-                                placeholder='Myself'
                                 onChange={handleRecipientChange}
                                 required
                             />

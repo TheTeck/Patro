@@ -1,40 +1,38 @@
 import React, { useState , useEffect } from 'react';
-import { Button, Header, Icon, Modal } from 'semantic-ui-react';
+import { Header, Modal } from 'semantic-ui-react';
 
-import CustomButton from '../CustomButton/CustomButton';
-
-export default function ModalBase(props) {
-  const [open, setOpen] = useState(false)
+export default function ModalBase({ open, close, resetClose, closeModals, title, children }) {
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
-      if (props.open) {
-        setOpen(true);
+      if (open) {
+        setOpenModal(true);
 
       }
-      if (props.close) {
+      if (close) {
         handleClose();
-        props.resetClose();
+        resetClose();
       }
-  });
+  }, [ open, close, handleClose, resetClose ]);
 
   function handleClose () {
-      setOpen(false);
-      props.closeModals();
-  };
+      setOpenModal(false);
+      closeModals();
+  }
 
   return (
     <Modal
       basic
       onClose={handleClose}
-      onOpen={() => setOpen(true)}
-      open={props.open || open}
+      onOpen={() => setOpenModal(true)}
+      open={open || openModal}
       size='small'
     >
       <Header>
-        {props.title}
+        {title}
       </Header>
       <Modal.Content>
-        {props.children}
+        {children}
       </Modal.Content>
     </Modal>
   )

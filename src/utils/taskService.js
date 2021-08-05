@@ -2,10 +2,6 @@ import tokenService from './tokenService';
 
 const BASE_URL = '/api/tasks';
 
-export default {
-    create
-};
-
 // export function getOneById(id) {
 //   return fetch(BASE_URL + `/${id}`, {
 //     headers: {
@@ -26,7 +22,7 @@ export default {
 //   }).then(res => res.json())
 // }
 
-export function create(task) {
+function create(task) {
     return fetch(BASE_URL, {
         method: 'POST',
         body: JSON.stringify(task),
@@ -34,9 +30,26 @@ export function create(task) {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + tokenService.getToken()
         }
-    }).then(res => res.json())
-}
+    }).then(res => res.json());
+};
 
+function getOne (taskID) {
+    return fetch (`api/tasks/${taskID}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }
+    }).then(res => res.json());
+};
+
+function getAllForUser (userID) {
+    return fetch (`api/users/${userID}/tasks`, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }
+    }).then(res => res.json());
+};
 // export function getAll() {
 //     return fetch(BASE_URL, {
 //       headers: {
@@ -54,3 +67,11 @@ export function create(task) {
 //     }
 //   }).then(res => res.json())
 // }
+
+const exportedFunctions = {
+    create,
+    getAllForUser,
+    getOne,
+};
+
+export default exportedFunctions;

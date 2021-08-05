@@ -51,7 +51,7 @@ export default function LoginPage(props){
         setInvalidForm(false)
       else if ((state.username === '' || state.password === '') && !invalidForm)
         setInvalidForm(true)
-    });
+    }, [state, invalidForm]);
 
     return (
         <div className="login-page-container">

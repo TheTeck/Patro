@@ -21,10 +21,9 @@ app.use(express.static(path.join(__dirname, 'build'))); // this allows express t
 // This decodes the jwt token, and assigns
 // the user information to req.user
 app.use(require('./config/auth')); 
-console.log('in server.js')
 // api routes must be before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/tasks', require('./routes/api/tasks'));
+app.use('/', require('./routes/api/tasks'));
 
 // "catch all" route
 app.get('/*', function(req, res) {

@@ -62,7 +62,7 @@ export default function SignUpPage(props){
       else if ((selectedFile === '' || state.username === '' || state.fullname === '' || state.email === ''
           || state.password === '' || state.passwordConf === '') && !invalidForm)
         setInvalidForm(true)
-    })   
+    }, [selectedFile, state, invalidForm]);   
       
     return (
       <div className="signup-page-container">

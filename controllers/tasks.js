@@ -3,12 +3,14 @@ const User = require('../models/user');
 
 module.exports = {
     create,
+    getAllForUser,
+    getOne,
 };
 
 // Controller to create a new task. A task initially only
-// has 1 recipient. Add 
+// has 1 recipient. Add task to task list for creator and
+// the recipient if different from creator
 async function create (req, res) {
-    console.log(req.body, '<-- req.body')
     try {
         const task = await Task.create({
             creator: req.body.creator,
@@ -30,6 +32,28 @@ async function create (req, res) {
         }
 
         res.status(201).json({ task });
+    } catch (err) {
+        res.json({ data: err });
+    }
+};
+
+async function getAllForUser (req, res) {
+    try {
+        const user = await User.findOne({ _id: req.params.id });
+        let userTasks = [];
+        
+        console.log(userTasks);
+        res.status(200).json(user.tasks);
+    } catch (err) {
+        res.json({ data: err });
+    }
+}
+
+async function getOne (req, res) {
+    try {
+        const task = await Task.findOne({ _id: res.params.id });
+        console.log(task)
+        res.status(200).json({ task });
     } catch (err) {
         res.json({ data: err });
     }
