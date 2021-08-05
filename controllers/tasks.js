@@ -13,7 +13,6 @@ async function create (req, res) {
             recipient: req.body.recipient,
             description: req.body.description,
             priority: req.body.priority,
-            deadline: req.body.deadline,
             complete: false
         });
         res.status(201).json({ task });
