@@ -34,7 +34,6 @@ export function create(task) {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + tokenService.getToken()
         }
-        
     }).then(res => res.json())
 }
 

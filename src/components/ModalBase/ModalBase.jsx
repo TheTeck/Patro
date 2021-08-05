@@ -8,7 +8,12 @@ export default function ModalBase(props) {
 
   useEffect(() => {
       if (props.open) {
-          setOpen(true);
+        setOpen(true);
+
+      }
+      if (props.close) {
+        handleClose();
+        props.resetClose();
       }
   });
 

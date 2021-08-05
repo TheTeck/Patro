@@ -16,11 +16,11 @@ const taskSchema = new mongoose.Schema({
         required: true,
         default: ''
     },
-    // priority is 1-5, lowest to highest
+    // priority {'none', 'low', 'medium', 'high', 'urgent'}
     priority: {
-        type: Number,
+        type: String,
         required: true,
-        default: 1
+        default: 'none'
     },
     complete: {
         type: Boolean,

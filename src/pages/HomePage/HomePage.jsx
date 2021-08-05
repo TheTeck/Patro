@@ -8,10 +8,10 @@ import './HomePage.scss';
 
 export default function HomePage (props) {
 
+    console.log(props.user);
     const [openNewTaskModal, setOpenNewTaskModal] = useState(false);
 
     function openModal () {
-        console.log('clicked')
         setOpenNewTaskModal(true);
     };
 
@@ -28,7 +28,7 @@ export default function HomePage (props) {
                     <CustomButton title="New Task" icon="add" action={openModal} />
                     <CustomButton title="Filter" icon="sort" />
                 </div>
-                <NewTaskModal open={openNewTaskModal} closeModals={closeModals} />
+                <NewTaskModal user={props.user} open={openNewTaskModal} closeModals={closeModals} />
             </div>
         </div>
     )

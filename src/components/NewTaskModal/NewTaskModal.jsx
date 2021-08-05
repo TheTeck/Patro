@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Grid, Form, Button, Segment } from 'semantic-ui-react';
 
+import taskService from '../../utils/taskService';
 import ModalBase from '../ModalBase/ModalBase';
 
 import './NewTaskModal.scss';
 
 export default function NewTaskModal (props) {
 
+    const [close, setClose] = useState(false);
     const [formData, setFormData] = useState({
         recipient: '',
         description: '',
@@ -18,6 +20,14 @@ export default function NewTaskModal (props) {
         { key: 'm', text: 'Myself', value: 'myself' },
     ]
     
+    function handleModalClose() {
+        setClose(true);
+    }
+
+    function resetClose() {
+        setClose(false);
+    }
+
     // General state update
     function handleChange(e){
       setFormData({
@@ -42,13 +52,31 @@ export default function NewTaskModal (props) {
         })
     }
 
-    function handleSubmit() {
-        console.log(formData)
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        const data = {
+            creator: props.user._id,
+            recipient: formData.recipient,
+            description: formData.description,
+            priority: formData.priority
+        }
+
+        try {
+            const task = await taskService.create(data);
+            console.log(task)
+        } catch (err) {
+            console.log(err);
+        }
+        handleModalClose();
+
     };
 
     return (
         <ModalBase
             open={props.open} 
+            close={close}
+            resetClose={resetClose}
             closeModals={props.closeModals}
             title="New Task"
         >
@@ -66,8 +94,7 @@ export default function NewTaskModal (props) {
                                 onChange={handleRecipientChange}
                                 required
                             />
-                            <Form.TextArea 
-                                fluid
+                            <Form.TextArea
                                 name='description'
                                 placeholder='Describe the task'
                                 label='Description'
