@@ -10,7 +10,7 @@ export default function NewTaskModal (props) {
     const [formData, setFormData] = useState({
         recipient: '',
         description: '',
-        priority: 'low',
+        priority: 'none',
     });
 
     // Options for task recipient dropdown
@@ -34,6 +34,7 @@ export default function NewTaskModal (props) {
         })
     }
 
+    // Priority radio group state update
     function handlePriorityChange(e, {value}) {
         setFormData({
             ...formData,
@@ -75,7 +76,12 @@ export default function NewTaskModal (props) {
                             />
                             <label style={{ color: 'black', fontWeight: '600' }}>Priority</label>
                             <Form.Group inline>
-                                
+                                <Form.Radio
+                                    label='None'
+                                    value='none'
+                                    checked={formData.priority === 'none'}
+                                    onChange={handlePriorityChange}
+                                />
                                 <Form.Radio
                                     label='Low'
                                     value='low'
@@ -89,16 +95,16 @@ export default function NewTaskModal (props) {
                                     onChange={handlePriorityChange}
                                 />
                                 <Form.Radio
-                                    label='Large'
-                                    value='large'
-                                    checked={formData.priority === 'large'}
+                                    label='High'
+                                    value='high'
+                                    checked={formData.priority === 'high'}
                                     onChange={handlePriorityChange}
                                 />
                                 <Form.Radio
                                     label='Urgent'
                                     value='urgent'
                                     checked={formData.priority === 'urgent'}
-                                    onChange={handlePriorityChange}
+                                    onChange={handlePriorityChange}                                    
                                 />
                             </Form.Group>
                             <Button
