@@ -10,12 +10,15 @@ export default function NewTaskModal (props) {
     const [formData, setFormData] = useState({
         recipient: '',
         description: '',
+        priority: 'low',
     });
 
+    // Options for task recipient dropdown
     const options = [
         { key: 'm', text: 'Myself', value: 'myself' },
     ]
     
+    // General state update
     function handleChange(e){
       setFormData({
         ...formData,
@@ -23,10 +26,18 @@ export default function NewTaskModal (props) {
       });
     };
 
+    // Recipient dropdown state update
     function handleRecipientChange(e, {value}) {
         setFormData({
             ...formData,
             recipient: value
+        })
+    }
+
+    function handlePriorityChange(e, {value}) {
+        setFormData({
+            ...formData,
+            priority: value
         })
     }
 
@@ -44,14 +55,6 @@ export default function NewTaskModal (props) {
                 <Grid.Column textAlign="left" style={{ maxWidth: 500 }}>
                     <Form  autoComplete="off"  onSubmit={handleSubmit}>
                         <Segment stacked>
-                            {/* <Form.Input
-                                label="Email"
-                                name="email"
-                                placeholder="Enter Email"
-                                value={ state.username}
-                                onChange={handleChange}
-                                required
-                            /> */}
                             <Form.Select 
                                 fluid
                                 name='recipient'
@@ -70,6 +73,34 @@ export default function NewTaskModal (props) {
                                 onChange={handleChange}
                                 required
                             />
+                            <label style={{ color: 'black', fontWeight: '600' }}>Priority</label>
+                            <Form.Group inline>
+                                
+                                <Form.Radio
+                                    label='Low'
+                                    value='low'
+                                    checked={formData.priority === 'low'}
+                                    onChange={handlePriorityChange}
+                                />
+                                <Form.Radio
+                                    label='Medium'
+                                    value='medium'
+                                    checked={formData.priority === 'medium'}
+                                    onChange={handlePriorityChange}
+                                />
+                                <Form.Radio
+                                    label='Large'
+                                    value='large'
+                                    checked={formData.priority === 'large'}
+                                    onChange={handlePriorityChange}
+                                />
+                                <Form.Radio
+                                    label='Urgent'
+                                    value='urgent'
+                                    checked={formData.priority === 'urgent'}
+                                    onChange={handlePriorityChange}
+                                />
+                            </Form.Group>
                             <Button
                                 style={{ backgroundColor: 'rgb(251, 133, 0' }}
                                 fluid size='large'
