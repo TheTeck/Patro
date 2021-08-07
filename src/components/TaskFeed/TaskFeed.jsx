@@ -1,4 +1,6 @@
 import React from 'react';
+
+import TaskCard from '../TaskCard/TaskCard';
 import './TaskFeed.scss';
 
 export default function TaskFeed (props) {
@@ -7,7 +9,7 @@ export default function TaskFeed (props) {
         <div className="taskfeed-container">
             {
                 props.tasks.map(task => {
-                    return <div key={task._id}>{task.description}</div>
+                    return <TaskCard key={task._id} task={task} />
                 })
             }
         </div>
