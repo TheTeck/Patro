@@ -9,7 +9,7 @@ module.exports = {
 
 // Controller to create a new task. A task initially only
 // has 1 recipient. Add task to task list for creator and
-// the recipient if different from creator
+// the recipient even if they are the same user
 async function create (req, res) {
     try {
         const task = await Task.create({
@@ -25,11 +25,9 @@ async function create (req, res) {
         user.tasks.push(task);
         await user.save();
 
-        if (req.body.creator !== req.body.recipient) {
-            const user2 = await User.findOne({ _id: req.body.recipient });
-            user2.tasks.push(task);
-            await user2.save();
-        }
+        const recipient = await User.findOne({ _id: req.body.recipient });
+        recipient.tasks.push(task);
+        await recipient.save();
 
         res.status(201).json({ task });
     } catch (err) {
@@ -38,12 +36,13 @@ async function create (req, res) {
 };
 
 async function getAllForUser (req, res) {
-    try {
-        const user = await User.findOne({ _id: req.params.id });
-        let userTasks = [];
-        
-        console.log(userTasks);
-        res.status(200).json(user.tasks);
+    try {       
+        // const user = await User.findOne({ _id : req.params.id }); 
+        // const tasks = user.tasks;
+        // console.log(tasks);
+        const tasks = await Task.find({ recipient: req.params.id });
+        console.log(tasks)
+        res.status(200).json({ tasks });
     } catch (err) {
         res.json({ data: err });
     }
