@@ -55,9 +55,17 @@ export default function NewTaskModal (props) {
     async function handleSubmit(e) {
         e.preventDefault();
 
+        let recipient = null;
+
+        if (formData.recipient === 'myself') {
+            recipient = props.user._id;
+        } else {
+            // other user id
+        }
+
         const data = {
             creator: props.user._id,
-            recipient: formData.recipient,
+            recipient: recipient,
             description: formData.description,
             priority: formData.priority
         }

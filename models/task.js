@@ -6,11 +6,12 @@ const taskSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    // recipients are all users who recieve this task
-    recipients: [{
+    // user who gets this task
+    recipient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-    }],
+        required: true
+    },
     description: {
         type: String,
         required: true,
