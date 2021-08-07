@@ -141,13 +141,24 @@ export default function NewTaskModal (props) {
                                     onChange={handlePriorityChange}                                    
                                 />
                             </Form.Group>
-                            <Button
-                                style={{ backgroundColor: 'rgb(251, 133, 0' }}
-                                fluid size='large'
-                                type="submit"
+                            <Button.Group
+                                fluid
+                                widths='2'
                             >
-                                Login
-                            </Button>
+                                <Button
+                                    style={{ backgroundColor: 'rgb(251, 133, 0' }}
+                                    size='large'
+                                    type="submit"
+                                >
+                                    Create Task
+                                </Button>
+                                <Button
+                                    size='large'
+                                    onClick={handleModalClose}
+                                >
+                                    Cancel
+                                </Button>
+                            </Button.Group>
                         </Segment>
                     </Form>
                 </Grid.Column>
