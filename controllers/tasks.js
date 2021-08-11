@@ -47,7 +47,6 @@ async function getAllForUser (req, res) {
 async function getOne (req, res) {
     try {
         const task = await Task.findOne({ _id: res.params.id });
-        console.log(task)
         res.status(200).json({ task });
     } catch (err) {
         res.json({ data: err });

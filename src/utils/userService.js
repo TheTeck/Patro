@@ -45,11 +45,21 @@ function login(creds) {
   .then(({token}) => tokenService.setToken(token));
 }
 
+function getOne(userID) {
+  return fetch(BASE_URL + userID, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  }).then(res => res.json());
+}
+
 
 const exportedFunctions = {
   signup, 
   logout,
   login,
+  getOne,
   getUser
 };
 

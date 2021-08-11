@@ -42,7 +42,7 @@ export default function HomePage (props) {
                 <div className="homepage-central-container">
                     <CustomButton title="New Task" icon="add" action={openModal} />
                     <CustomButton title="Filter" icon="sort" />
-                    <TaskFeed tasks={tasks} />
+                    <TaskFeed tasks={tasks} user={props.user} />
                 </div>
                 <NewTaskModal user={props.user} open={openNewTaskModal} closeModals={closeModals} />
             </div>

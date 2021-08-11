@@ -9,7 +9,7 @@ export default function TaskFeed (props) {
         <div className="taskfeed-container">
             {
                 props.tasks.map(task => {
-                    return <TaskCard key={task._id} task={task} />
+                    return <TaskCard key={task._id} task={task} user={props.user} />
                 })
             }
         </div>
