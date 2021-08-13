@@ -25,7 +25,8 @@ export default function HomePage (props) {
     async function getTasksForUser () {
         try {
             const userTasks = await taskService.getAllForUser(props.user._id);
-            setTasks(userTasks.tasks);
+            console.log(userTasks.filteredTasks, "This is in the homepage")
+            setTasks(userTasks.filteredTasks);
         } catch (err) {
             console.log(err);
         }
