@@ -43,6 +43,7 @@ function getOne (taskID) {
 };
 
 function getAllForUser (userID) {
+    console.log("in the utitlies")
     return fetch (`api/users/${userID}/tasks`, {
         method: 'GET',
         headers: {

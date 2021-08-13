@@ -14,7 +14,7 @@ async function create (req, res) {
     try {
         const task = await Task.create({
             creator: req.body.creator,
-            recipient: req.body.recipient,
+            recipients: [ req.body.recipient ],
             description: req.body.description,
             priority: req.body.priority,
             complete: false
@@ -37,8 +37,13 @@ async function create (req, res) {
 
 async function getAllForUser (req, res) {
     try {       
-        const tasks = await Task.find({ recipient: req.params.id });
-        res.status(200).json({ tasks });
+        const tasks = await Task.find({});
+        console.log(tasks)
+        const filteredTasks = tasks.filter(task => {
+            return task.recipients.includes(req.params.id);
+        });
+        console.log(filteredTasks, "This is in the controller");
+        res.status(200).json({ filteredTasks });
     } catch (err) {
         res.json({ data: err });
     }
@@ -46,7 +51,7 @@ async function getAllForUser (req, res) {
 
 async function getOne (req, res) {
     try {
-        const task = await Task.findOne({ _id: res.params.id });
+        const task = await Task.findOne({ _id: req.params.id });
         res.status(200).json({ task });
     } catch (err) {
         res.json({ data: err });

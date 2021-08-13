@@ -7,8 +7,8 @@ const taskSchema = new mongoose.Schema({
         required: true
     },
     // user who gets this task
-    recipient: {
-        type: mongoose.Schema.Types.ObjectId,
+    recipients: {
+        type: [ mongoose.Schema.Types.ObjectId ],
         ref: 'User',
         required: true
     },
