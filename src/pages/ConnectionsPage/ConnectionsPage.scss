@@ -1,0 +1,10 @@
+@import "../../scss/colors";
+@import "../../scss/fonts";
+
+.connections-page-container {
+  background-color: $secondary-color;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
