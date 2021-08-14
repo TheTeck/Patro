@@ -8,3 +8,13 @@
   display: flex;
   justify-content: center;
 }
+
+.connections-page-central-container {
+  width: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .connections-page-central-container {
+    width: 65%;
+  }
+}
