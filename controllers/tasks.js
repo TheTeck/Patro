@@ -47,7 +47,7 @@ async function getAllForUser (req, res) {
     } catch (err) {
         res.json({ data: err });
     }
-}
+};
 
 async function getOne (req, res) {
     try {
@@ -56,4 +56,4 @@ async function getOne (req, res) {
     } catch (err) {
         res.json({ data: err });
     }
-}
+};
