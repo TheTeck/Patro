@@ -1,0 +1,27 @@
+@import "../../scss/colors";
+
+.checkbox {
+  width: 60px;
+  height: 60px;
+  border: 5px solid $secondary-font-color;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translate(50%, -50%);
+
+  &:hover {
+    background-color: $secondary-font-color;
+
+    .material-icons.md-48.check {
+      visibility: visible;
+      color: $primary-font-color;
+    }
+  }
+}
+
+.material-icons.md-48.check {
+  font-size: 48px;
+  visibility: hidden;
+  cursor: pointer;
+}

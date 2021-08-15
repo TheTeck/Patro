@@ -1,6 +1,6 @@
-import userEvent from '@testing-library/user-event';
 import React, { useState, useEffect } from 'react';
 
+import Checkbox from '../Checkbox/Checkbox';
 import userService from '../../utils/userService';
 import './TaskCard.scss';
 
@@ -38,6 +38,7 @@ export default function TaskCard (props) {
                     {props.task.description}
                 </div>
             </div>
+            <Checkbox />
         </div>
     );
 };
