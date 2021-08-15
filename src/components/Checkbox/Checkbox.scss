@@ -9,10 +9,12 @@
   top: 50%;
   right: 10%;
   transform: translate(50%, -50%);
+  cursor: pointer;
 
   &:hover {
     background-color: $secondary-font-color;
 
+    .material-icons.md-48.uncheck,
     .material-icons.md-48.check {
       visibility: visible;
       color: $primary-font-color;
@@ -20,8 +22,12 @@
   }
 }
 
-.material-icons.md-48.check {
+.material-icons.md-48.uncheck {
   font-size: 48px;
   visibility: hidden;
-  cursor: pointer;
+}
+
+.material-icons.md-48.check {
+  visibility: visible;
+  font-size: 48px;
 }

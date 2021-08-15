@@ -38,7 +38,7 @@ export default function TaskCard (props) {
                     {props.task.description}
                 </div>
             </div>
-            <Checkbox />
+            <Checkbox completed={props.task.complete} />
         </div>
     );
 };
