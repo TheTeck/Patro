@@ -1,0 +1,25 @@
+@import "../../scss/colors";
+
+.searchbar-container {
+  width: 90%;
+  height: 50px;
+  margin: 20px 5%;
+  border-radius: 10px;
+  background-color: $primary-font-color;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+}
+
+.md-36 {
+  color: $primary-color;
+  font-size: 36px;
+}
+
+@media screen and (min-width: 800px) {
+  .searchbar-container {
+    width: 50%;
+    margin: 20px auto 20px 5%;
+  }
+}

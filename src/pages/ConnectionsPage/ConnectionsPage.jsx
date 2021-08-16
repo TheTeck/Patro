@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import ConnectionFeed from '../../components/ConnectionFeed/ConnectionFeed';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import connectionService from '../../utils/connectionService';
 import './ConnectionsPage.scss';
 
@@ -15,6 +16,7 @@ export default function ConnectionsPage (props) {
             <Header menuOptions={props.menuOptions} logoutHandler={props.logoutHandler} />
             <div className="connections-page-container">
                 <div className="connections-page-central-container">
+                    <SearchBar />
                     <ConnectionFeed connections={connections} />
                 </div>
             </div>
