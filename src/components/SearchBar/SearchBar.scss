@@ -10,23 +10,36 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 5px;
 }
 
 .md-36 {
   color: $primary-color;
   font-size: 36px;
+  padding: 5px;
 }
 
 .searchbar-input {
   height: 100%;
   width: 100%;
-  background-color: transparent;
   border: none;
+  background-color: transparent;
   font-size: $medium-size;
   &:focus {
     outline: none;
   }
+}
+
+.searchbar-btn {
+  background-color: $secondary-font-color;
+  height: 100%;
+  width: 80px;
+  border: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: $medium-size;
+  font-weight: 700;
+  color: $primary-color;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 800px) {
