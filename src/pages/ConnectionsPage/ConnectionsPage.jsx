@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import ConnectionFeed from '../../components/ConnectionFeed/ConnectionFeed';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import userService from '../../utils/userService';
 import connectionService from '../../utils/connectionService';
 import './ConnectionsPage.scss';
 
@@ -12,8 +13,13 @@ export default function ConnectionsPage (props) {
     const [connections, setConnections] = useState(props.user.connections);
     const [showConnections, setShowConnections] = useState(true);
 
-    function showSearchResults(value) {
-        // use value here to filter users
+    async function showSearchResults(value) {
+        try {
+            const allUsers = await userService.getAll();
+            console.log(allUsers.users)
+        } catch (error) {
+            console.log(error);
+        }
         setShowConnections(false);
     };
 

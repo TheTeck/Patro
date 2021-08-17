@@ -52,7 +52,16 @@ function getOne(userID) {
       'Authorization': 'Bearer ' + tokenService.getToken()
     }
   }).then(res => res.json());
-}
+};
+
+function getAll() {
+  return fetch(BASE_URL, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+  }).then(res => res.json());
+};
 
 
 const exportedFunctions = {
@@ -60,6 +69,7 @@ const exportedFunctions = {
   logout,
   login,
   getOne,
+  getAll,
   getUser
 };
 
