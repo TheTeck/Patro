@@ -1,20 +1,26 @@
 import React from 'react';
 
+import ConnectionCard from '../ConnectionCard/ConnectionCard';
 import './ConnectionFeed.scss';
 
 export default function ConnectionFeed (props) {
     return (
         <div className="connection-feed-container">
             {
-                props.connections.length === 0 ? "No Connections Yet" :
+                props.users.length === 0 ? "No Connections Yet" :
                 (
-                    props.connections.map(connection => {
+                    props.users.map(user => {
                         return (
-                            <>{connection}</>
+                            <>
+                                {
+                                    props.isSearch ? "This is a seach feed"
+                                    : <ConnectionCard key={user._id} connection={user} />
+                                }
+                            </>
                         )
                     })
                 )
             }
         </div>
     )
-}
+};

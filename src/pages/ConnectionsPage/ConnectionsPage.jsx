@@ -12,11 +12,12 @@ export default function ConnectionsPage (props) {
 
     const [connections, setConnections] = useState(props.user.connections);
     const [showConnections, setShowConnections] = useState(true);
+    const [filteredUsers, setFilteredUsers] = useState([]);
 
     async function showSearchResults(value) {
         try {
             const allUsers = await userService.getAll();
-            console.log(allUsers.users)
+            setFilteredUsers(allUsers.users)
         } catch (error) {
             console.log(error);
         }
@@ -30,8 +31,8 @@ export default function ConnectionsPage (props) {
                 <div className="connections-page-central-container">
                     <SearchBar showSeachResults={showSearchResults} />
                     {
-                        showConnections ? <ConnectionFeed connections={connections} />
-                        : "These are the search results"
+                        showConnections ? <ConnectionFeed users={connections} isSearch={false} />
+                        : <ConnectionFeed users={filteredUsers} isSearch={true} />
                     }
                 </div>
             </div>
