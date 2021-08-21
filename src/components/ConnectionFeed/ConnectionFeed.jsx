@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ConnectionCard from '../ConnectionCard/ConnectionCard';
+import SearchResultCard from '../SearchResultCard/SearchResultCard';
 import './ConnectionFeed.scss';
 
 export default function ConnectionFeed (props) {
@@ -13,7 +14,7 @@ export default function ConnectionFeed (props) {
                         return (
                             <>
                                 {
-                                    props.isSearch ? "This is a seach feed"
+                                    props.isSearch ? <SearchResultCard key={user._id} user={user} />
                                     : <ConnectionCard key={user._id} connection={user} />
                                 }
                             </>

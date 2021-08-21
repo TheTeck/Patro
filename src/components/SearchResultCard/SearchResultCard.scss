@@ -1,0 +1,38 @@
+@import "../../scss/colors";
+@import "../../scss/fonts";
+
+.search-result-card-container {
+  height: 100px;
+  width: 100%;
+  background-color: $primary-font-color;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  display: flex;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.user-image {
+  height: 80px;
+  width: 80px;
+  margin: 10px;
+}
+
+.user-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+.user-text-username {
+  font-size: $medium-size;
+}
+
+.user-text-fullname {
+  font-size: $readable-size;
+  margin-top: 5px;
+}
