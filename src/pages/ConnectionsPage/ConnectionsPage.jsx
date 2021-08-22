@@ -17,7 +17,11 @@ export default function ConnectionsPage (props) {
     async function showSearchResults(value) {
         try {
             const allUsers = await userService.getAll();
-            setFilteredUsers(allUsers.users)
+            const filteredByValue = allUsers.users.filter(user => {
+                return user.username.toLowerCase().match(value.toLowerCase()) 
+                    || user.fullname.toLowerCase().match(value.toLowerCase());
+            });
+            setFilteredUsers(filteredByValue)
         } catch (error) {
             console.log(error);
         }
