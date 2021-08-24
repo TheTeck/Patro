@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ConnectionFeed from '../../components/ConnectionFeed/ConnectionFeed';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -12,21 +12,31 @@ export default function ConnectionsPage (props) {
 
     const [connections, setConnections] = useState(props.user.connections);
     const [showConnections, setShowConnections] = useState(true);
+    const [allUsers, setAllUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
 
-    async function showSearchResults(value) {
+    function showSearchResults(value) {
+        const filteredByValue = allUsers.filter(user => {
+            return user.username.toLowerCase().match(value.toLowerCase()) 
+                || user.fullname.toLowerCase().match(value.toLowerCase());
+        });
+        
+        setFilteredUsers(filteredByValue)
+        setShowConnections(false);
+    };
+
+    async function getAndSetTheUsers() {
         try {
-            const allUsers = await userService.getAll();
-            const filteredByValue = allUsers.users.filter(user => {
-                return user.username.toLowerCase().match(value.toLowerCase()) 
-                    || user.fullname.toLowerCase().match(value.toLowerCase());
-            });
-            setFilteredUsers(filteredByValue)
+            const users = await userService.getAll();
+            setAllUsers(users.users);
         } catch (error) {
             console.log(error);
         }
-        setShowConnections(false);
     };
+
+    useEffect(() => {
+        getAndSetTheUsers();
+    }, []);
 
     return (
         <>
