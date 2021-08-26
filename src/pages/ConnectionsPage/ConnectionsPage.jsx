@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ConnectionFeed from '../../components/ConnectionFeed/ConnectionFeed';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import userService from '../../utils/userService';
+import inviteService from '../../utils/inviteService';
 import connectionService from '../../utils/connectionService';
 import './ConnectionsPage.scss';
 
@@ -35,8 +36,13 @@ export default function ConnectionsPage (props) {
         }
     };
 
-    function handleAddInvite(userId) {
-        console.log(userId);
+    async function handleAddInvite(userId) {
+        try {
+            inviteService.create(props.user._id, { invited: userId });
+            getAndSetTheUsers();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
@@ -50,8 +56,8 @@ export default function ConnectionsPage (props) {
                 <div className="connections-page-central-container">
                     <SearchBar showSeachResults={showSearchResults} />
                     {
-                        showConnections ? <ConnectionFeed users={connections} isSearch={false} />
-                        : <ConnectionFeed users={filteredUsers} isSearch={true} handleAddInvite={handleAddInvite} />
+                        showConnections ? <ConnectionFeed filteredUsers={connections} isSearch={false} />
+                        : <ConnectionFeed filteredUsers={filteredUsers} user={props.user} isSearch={true} handleAddInvite={handleAddInvite} />
                     }
                 </div>
             </div>
