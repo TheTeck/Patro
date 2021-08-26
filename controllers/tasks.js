@@ -38,11 +38,9 @@ async function create (req, res) {
 async function getAllForUser (req, res) {
     try {       
         const tasks = await Task.find({});
-        console.log(tasks)
         const filteredTasks = tasks.filter(task => {
             return task.recipients.includes(req.params.id);
         });
-        console.log(filteredTasks, "This is in the controller");
         res.status(200).json({ filteredTasks });
     } catch (err) {
         res.json({ data: err });

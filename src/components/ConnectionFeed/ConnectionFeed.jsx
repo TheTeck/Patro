@@ -8,14 +8,14 @@ export default function ConnectionFeed (props) {
     return (
         <div className="connection-feed-container">
             {
-                props.users.length === 0 ? "No matches found." :
+                props.filteredUsers.length === 0 ? "No matches found." :
                 (
-                    props.users.map(user => {
+                    props.filteredUsers.map(filteredUser => {
                         return (
                             <>
                                 {
-                                    props.isSearch ? <SearchResultCard key={user._id} user={user} handleAddInvite={props.handleAddInvite} />
-                                    : <ConnectionCard key={user._id} connection={user} />
+                                    props.isSearch ? <SearchResultCard key={filteredUser._id} filteredUser={filteredUser} user={props.user} handleAddInvite={props.handleAddInvite} />
+                                    : <ConnectionCard key={filteredUser._id} connection={filteredUser} />
                                 }
                             </>
                         )

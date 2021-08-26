@@ -25,6 +25,7 @@ app.use(require('./config/auth'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/', require('./routes/api/tasks'));
 app.use('/', require('./routes/api/connections'));
+app.use('/', require('./routes/api/invites'));
 
 // "catch all" route
 app.get('/*', function(req, res) {

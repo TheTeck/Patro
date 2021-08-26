@@ -10,8 +10,11 @@ export default function SearchResultCard (props) {
         setInInviteMode(prev => !prev);
     };
     function handleAddNewConnection () {
-        props.handleAddInvite(props.user._id);
+        handleToggleInviteMode();
+        props.handleAddInvite(props.filteredUser._id);
     };
+
+    console.log(props.user)
 
     return (
         <div className="search-result-card-container">
@@ -24,12 +27,16 @@ export default function SearchResultCard (props) {
                 </div> 
                 :
                 <>
-                    <img className="user-image" src={props.user.photoUrl} />
+                    <img className="user-image" src={props.filteredUser.photoUrl} />
                     <div className="user-text-wrapper">
-                        <div className="user-text-username">{props.user.username}</div>
-                        <div className="user-text-fullname">{props.user.fullname}</div>
+                        <div className="user-text-username">{props.filteredUser.username}</div>
+                        <div className="user-text-fullname">{props.filteredUser.fullname}</div>
                     </div>
-                    <button onClick={handleToggleInviteMode} className="invite-btn user-invite-button">Connect</button>
+                    {
+                        props.filteredUser.invitesFrom.includes(props.user._id) ?
+                        <button className="invite-btn user-already-invited-button">Pending</button>
+                        : <button onClick={handleToggleInviteMode} className="invite-btn user-invite-button">Connect</button>
+                    }
                 </>
             }
         </div>
