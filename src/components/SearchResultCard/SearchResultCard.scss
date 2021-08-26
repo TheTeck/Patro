@@ -27,11 +27,21 @@
   background-color: $confirm;
   color: $primary-font-color;
   margin-right: 10px;
+
+  &:hover {
+    border: 2px solid $primary-font-color;
+    margin: -2px 8px -2px -2px;
+  }
 }
 
 .cancel-invite-button {
   background-color: $cancel;
   color: $primary-font-color;
+
+  &:hover {
+    border: 2px solid $primary-font-color;
+    margin: -2px;
+  }
 }
 
 .confirm-invite-text {
@@ -76,16 +86,17 @@
   height: 50px;
   padding: 10px 15px;
   border-radius: 10px;
-
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 
 .user-invite-button {
   background-color: $secondary-font-color;
   color: $primary-color;
   margin-right: 20px;
+
+  &:hover {
+    color: $primary-font-color;
+  }
 }
 
 @media screen and (min-width: 1500px) {

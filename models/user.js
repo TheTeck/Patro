@@ -31,6 +31,16 @@ const userSchema = new mongoose.Schema({
     ref: 'User',
     default: []
   }],
+  invited: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    default: []
+  }],
+  invitesFrom: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    default: []
+  }],
   password: String,
   photoUrl: String  // string from aws!
 });
