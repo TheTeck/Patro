@@ -10,7 +10,7 @@ export default function SearchResultCard (props) {
         setInInviteMode(prev => !prev);
     };
     function handleAddNewConnection () {
-        // Do something
+        props.handleAddInvite(props.user._id);
     };
 
     return (

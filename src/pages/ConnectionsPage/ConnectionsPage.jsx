@@ -17,8 +17,9 @@ export default function ConnectionsPage (props) {
 
     function showSearchResults(value) {
         const filteredByValue = allUsers.filter(user => {
-            return user.username.toLowerCase().match(value.toLowerCase()) 
-                || user.fullname.toLowerCase().match(value.toLowerCase());
+            return user._id !== props.user._id && 
+                (user.username.toLowerCase().match(value.toLowerCase()) 
+                || user.fullname.toLowerCase().match(value.toLowerCase()));
         });
         
         setFilteredUsers(filteredByValue)
@@ -34,6 +35,10 @@ export default function ConnectionsPage (props) {
         }
     };
 
+    function handleAddInvite(userId) {
+        console.log(userId);
+    };
+
     useEffect(() => {
         getAndSetTheUsers();
     }, []);
@@ -46,7 +51,7 @@ export default function ConnectionsPage (props) {
                     <SearchBar showSeachResults={showSearchResults} />
                     {
                         showConnections ? <ConnectionFeed users={connections} isSearch={false} />
-                        : <ConnectionFeed users={filteredUsers} isSearch={true} />
+                        : <ConnectionFeed users={filteredUsers} isSearch={true} handleAddInvite={handleAddInvite} />
                     }
                 </div>
             </div>
