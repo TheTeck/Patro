@@ -13,6 +13,23 @@
   width: 100%;
 }
 
+.invite-notification {
+  font-size: $medium-size;
+  font-weight: 700;
+  color: $alert-color;
+
+  button {
+    border: none;
+    border-radius: 6px;
+    margin: 0 0 20px 20px;
+    padding: 8px 12px;
+    color: $primary-color;
+    background-color: $secondary-font-color;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
+
 @media screen and (min-width: 800px) {
   .connections-page-central-container {
     width: 65%;

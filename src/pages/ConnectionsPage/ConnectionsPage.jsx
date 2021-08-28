@@ -15,6 +15,8 @@ export default function ConnectionsPage (props) {
     const [showConnections, setShowConnections] = useState(true);
     const [allUsers, setAllUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
+    const [ifInvites, setIfInvites] = useState(!!props.user.invitesFrom);
+    const [showInvites, setShowInvites] = useState(false);
 
     function showSearchResults(value) {
         const filteredByValue = allUsers.filter(user => {
@@ -45,6 +47,16 @@ export default function ConnectionsPage (props) {
         }
     };
 
+    function handleShowConnections () {
+        setShowConnections(true);
+        setShowInvites(false);
+    }
+
+    function handleShowInvites () {
+        setShowInvites(true);
+        setShowConnections(false);
+    }
+
     useEffect(() => {
         getAndSetTheUsers();
     }, []);
@@ -56,7 +68,12 @@ export default function ConnectionsPage (props) {
                 <div className="connections-page-central-container">
                     <SearchBar showSeachResults={showSearchResults} />
                     {
+                        ifInvites && !showInvites ? <div className="invite-notification">Connections Pending
+                            <button onClick={handleShowInvites}>View</button></div> : <></>
+                    }
+                    {
                         showConnections ? <ConnectionFeed filteredUsers={connections} isSearch={false} />
+                        : showInvites ? <div>This is the invites feed now</div> 
                         : <ConnectionFeed filteredUsers={filteredUsers} user={props.user} isSearch={true} handleAddInvite={handleAddInvite} />
                     }
                 </div>
