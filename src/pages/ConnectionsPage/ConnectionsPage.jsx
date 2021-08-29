@@ -19,7 +19,6 @@ export default function ConnectionsPage (props) {
     const [ifInvites, setIfInvites] = useState(!!props.user.invitesFrom.length);
     const [showInvites, setShowInvites] = useState(false);
 
-    console.log(props.user)
     function showSearchResults(value) {
         if (!value) {
             setShowConnections(true);
@@ -61,6 +60,10 @@ export default function ConnectionsPage (props) {
     }
 
     function handleShowInvites () {
+        const inviters = allUsers.filter(user => {
+            return props.user.invitesFrom.includes(user._id);
+        });
+        setInvites(inviters);
         setShowInvites(true);
         setShowConnections(false);
     }
@@ -76,12 +79,15 @@ export default function ConnectionsPage (props) {
                 <div className="connections-page-central-container">
                     <SearchBar showSeachResults={showSearchResults} />
                     {
-                        ifInvites && !showInvites ? <div className="invite-notification">Connections Pending
+                        ifInvites && !showInvites ? <div className="invite-notification">*Connections Pending
                             <button onClick={handleShowInvites}>View</button></div> : <></>
                     }
                     {
                         showConnections ? <ConnectionFeed filteredUsers={connections} mode="connections" />
-                        : showInvites ? <ConnectionFeed filteredUsers={invites} mode="invites" />
+                        : showInvites ? <>
+                            <div className="accept-text">Accept Connection Invite?</div>
+                            <ConnectionFeed filteredUsers={invites} user={props.user} mode="invites" />
+                        </>
                         : <ConnectionFeed filteredUsers={filteredUsers} user={props.user} mode="search" handleAddInvite={handleAddInvite} />
                     }
                 </div>
