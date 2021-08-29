@@ -14,8 +14,9 @@ export default function ConnectionFeed (props) {
                         return (
                             <>
                                 {
-                                    props.isSearch ? <SearchResultCard key={filteredUser._id} filteredUser={filteredUser} user={props.user} handleAddInvite={props.handleAddInvite} />
-                                    : <ConnectionCard key={filteredUser._id} connection={filteredUser} />
+                                    props.mode === "search" ? <SearchResultCard key={filteredUser._id} filteredUser={filteredUser} user={props.user} handleAddInvite={props.handleAddInvite} />
+                                    : props.mode === "connections" ? <ConnectionCard key={filteredUser._id} connection={filteredUser} />
+                                    : <div>{filteredUser}</div>
                                 }
                             </>
                         )
