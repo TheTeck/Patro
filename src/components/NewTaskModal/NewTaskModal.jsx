@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Grid, Form, Button, Segment } from 'semantic-ui-react';
 
 import taskService from '../../utils/taskService';
 import ModalBase from '../ModalBase/ModalBase';
+import { UserContext } from '../../UserContext';
 
 import './NewTaskModal.scss';
 
@@ -14,6 +15,7 @@ export default function NewTaskModal (props) {
         description: '',
         priority: 'none',
     });
+    const user = useContext(UserContext);
 
     // Options for task recipient dropdown
     const options = [
@@ -58,13 +60,13 @@ export default function NewTaskModal (props) {
         let recipient = null;
 
         if (formData.recipient === 'myself') {
-            recipient = props.user._id;
+            recipient = user._id;
         } else {
             // other user id
         }
 
         const data = {
-            creator: props.user._id,
+            creator: user._id,
             recipient: recipient,
             description: formData.description,
             priority: formData.priority
