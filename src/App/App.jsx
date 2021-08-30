@@ -50,7 +50,7 @@ function App() {
                     <ArchivesPage menuOptions={menuOptions} logoutHandler={logoutHandler} />
                 </Route>
                 <Route exact path="/connections">
-                    <ConnectionsPage user={user} menuOptions={menuOptions} logoutHandler={logoutHandler} />
+                    <ConnectionsPage menuOptions={menuOptions} logoutHandler={logoutHandler} />
                 </Route>
                 <Route exact path="/home">
                     <HomePage menuOptions={menuOptions} logoutHandler={logoutHandler} />

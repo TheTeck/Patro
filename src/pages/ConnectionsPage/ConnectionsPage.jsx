@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import ConnectionFeed from '../../components/ConnectionFeed/ConnectionFeed';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import userService from '../../utils/userService';
 import inviteService from '../../utils/inviteService';
 import connectionService from '../../utils/connectionService';
+import { UserContext } from '../../UserContext';
 import './ConnectionsPage.scss';
 
 import Header from '../../components/Header/Header';
 
 export default function ConnectionsPage (props) {
 
-    const [connections, setConnections] = useState(props.user.connections);
-    const [invites, setInvites] = useState(props.user.invitesFrom);
+    const user = useContext(UserContext);
+
+    const [connections, setConnections] = useState(user.connections);
+    const [invites, setInvites] = useState(user.invitesFrom);
     const [showConnections, setShowConnections] = useState(true);
     const [allUsers, setAllUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
-    const [ifInvites, setIfInvites] = useState(!!props.user.invitesFrom.length);
+    const [ifInvites, setIfInvites] = useState(!!user.invitesFrom.length);
     const [showInvites, setShowInvites] = useState(false);
 
     function showSearchResults(value) {
@@ -24,10 +27,10 @@ export default function ConnectionsPage (props) {
             setShowConnections(true);
             setShowInvites(false);
         } else {
-            const filteredByValue = allUsers.filter(user => {
-                return user._id !== props.user._id && 
-                    (user.username.toLowerCase().match(value.toLowerCase()) 
-                    || user.fullname.toLowerCase().match(value.toLowerCase()));
+            const filteredByValue = allUsers.filter(filteredUser => {
+                return filteredUser._id !== user._id && 
+                    (filteredUser.username.toLowerCase().match(value.toLowerCase()) 
+                    || filteredUser.fullname.toLowerCase().match(value.toLowerCase()));
             });
 
             setFilteredUsers(filteredByValue)
@@ -47,21 +50,16 @@ export default function ConnectionsPage (props) {
 
     async function handleAddInvite(userId) {
         try {
-            inviteService.create(props.user._id, { invited: userId });
+            inviteService.create(user._id, { invited: userId });
             getAndSetTheUsers();
         } catch (error) {
             console.log(error);
         }
     };
 
-    function handleShowConnections () {
-        setShowConnections(true);
-        setShowInvites(false);
-    }
-
     function handleShowInvites () {
-        const inviters = allUsers.filter(user => {
-            return props.user.invitesFrom.includes(user._id);
+        const inviters = allUsers.filter(filteredUser => {
+            return user.invitesFrom.includes(filteredUser._id);
         });
         setInvites(inviters);
         setShowInvites(true);
@@ -86,9 +84,9 @@ export default function ConnectionsPage (props) {
                         showConnections ? <ConnectionFeed filteredUsers={connections} mode="connections" />
                         : showInvites ? <>
                             <div className="accept-text">Accept Connection Invite?</div>
-                            <ConnectionFeed filteredUsers={invites} user={props.user} mode="invites" />
+                            <ConnectionFeed filteredUsers={invites} mode="invites" />
                         </>
-                        : <ConnectionFeed filteredUsers={filteredUsers} user={props.user} mode="search" handleAddInvite={handleAddInvite} />
+                        : <ConnectionFeed filteredUsers={filteredUsers} mode="search" handleAddInvite={handleAddInvite} />
                     }
                 </div>
             </div>

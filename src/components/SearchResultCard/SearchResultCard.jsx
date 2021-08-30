@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
+import { UserContext } from '../../UserContext';
 import './SearchResultCard.scss';
 
 export default function SearchResultCard (props) {
 
     const [inInviteMode, setInInviteMode] = useState(false);
+    const user = useContext(UserContext);
 
     function handleToggleInviteMode () {
         setInInviteMode(prev => !prev);
@@ -13,8 +15,6 @@ export default function SearchResultCard (props) {
         handleToggleInviteMode();
         props.handleAddInvite(props.filteredUser._id);
     };
-
-    console.log(props.user)
 
     return (
         <div className="search-result-card-container">
@@ -33,7 +33,7 @@ export default function SearchResultCard (props) {
                         <div className="user-text-fullname">{props.filteredUser.fullname}</div>
                     </div>
                     {
-                        props.filteredUser.invitesFrom.includes(props.user._id) ?
+                        props.filteredUser.invitesFrom.includes(user._id) ?
                         <button className="invite-btn user-already-invited-button">Pending</button>
                         : <button onClick={handleToggleInviteMode} className="invite-btn user-invite-button">Connect</button>
                     }
