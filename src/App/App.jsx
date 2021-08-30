@@ -8,6 +8,7 @@ import HomePage from '../pages/HomePage/HomePage';
 import ArchivesPage from '../pages/ArchivesPage/ArchivesPage';
 import ConnectionsPage from '../pages/ConnectionsPage/ConnectionsPage';
 import userService from '../utils/userService'
+import { UserContext } from '../UserContext';
 
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
   const [user, setUser] = useState(userService.getUser()) // getUser decodes our JWT token, into a javascript object
   // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like 
   // this  const token = createJWT(user); // where user was the document we created from mongo
+
+  UserContext.displayName = "User Context";
 
   const menuOptions = [
     "Home",
@@ -28,7 +31,7 @@ function App() {
 
   function logoutHandler(){
     userService.logout();
-    setUser({user: null})
+    setUser(null);
   }
 
   return (
@@ -40,23 +43,23 @@ function App() {
           <Route exact path="/signup">
              <SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>
           </Route>
-          {userService.getUser() ? 
-            <> 
+          { user ? 
+            <UserContext.Provider value={user}> 
              <Switch>
                 <Route exact path="/archives">
-                    <ArchivesPage user={user} menuOptions={menuOptions} logoutHandler={logoutHandler} />
+                    <ArchivesPage menuOptions={menuOptions} logoutHandler={logoutHandler} />
                 </Route>
                 <Route exact path="/connections">
                     <ConnectionsPage user={user} menuOptions={menuOptions} logoutHandler={logoutHandler} />
                 </Route>
                 <Route exact path="/home">
-                    <HomePage user={user} menuOptions={menuOptions} logoutHandler={logoutHandler} />
+                    <HomePage menuOptions={menuOptions} logoutHandler={logoutHandler} />
                 </Route>
                 <Route exact path="/">
-                    <HomePage user={user} menuOptions={menuOptions} logoutHandler={logoutHandler} />
+                    <HomePage menuOptions={menuOptions} logoutHandler={logoutHandler} />
                 </Route>
             </Switch>
-            </>
+            </UserContext.Provider>
             :
             <Redirect to='/login'/>
           }

@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import Checkbox from '../Checkbox/Checkbox';
 import userService from '../../utils/userService';
+import { UserContext } from '../../UserContext';
 import './TaskCard.scss';
 
 export default function TaskCard (props) {
 
     const [creator, setCreator] = useState("Unknown");
+    const user = useContext(UserContext);
 
     const priorityClassString = `priority-marking priority-${props.task.priority}`;
 
@@ -20,7 +22,7 @@ export default function TaskCard (props) {
     };
 
     useEffect(() => {
-        if (props.task.creator === props.user._id) {
+        if (props.task.creator === user._id) {
             setCreator("me");
         } else {
             getUsername();
