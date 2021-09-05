@@ -57,6 +57,17 @@ export default function ConnectionsPage (props) {
         }
     };
 
+    async function handleAcceptInvite (inviteId) {
+        try {
+            const inviteList = await inviteService.deleteInvite(user._id, inviteId);
+            setInvites(inviteList.data);
+            setIfInvites(!!inviteList.data);
+            // Add each user to each other's connection list
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     function handleShowInvites () {
         const inviters = allUsers.filter(filteredUser => {
             return user.invitesFrom.includes(filteredUser._id);
@@ -84,7 +95,7 @@ export default function ConnectionsPage (props) {
                         showConnections ? <ConnectionFeed filteredUsers={connections} mode="connections" />
                         : showInvites ? <>
                             <div className="accept-text">Accept Connection Invite?</div>
-                            <ConnectionFeed filteredUsers={invites} mode="invites" />
+                            <ConnectionFeed filteredUsers={invites} mode="invites" handleAcceptInvite={handleAcceptInvite} />
                         </>
                         : <ConnectionFeed filteredUsers={filteredUsers} mode="search" handleAddInvite={handleAddInvite} />
                     }
